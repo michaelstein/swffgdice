@@ -10,7 +10,7 @@ path = "src/main.rs"
 
 [lib]
 path = "src/lib/mod.rs"
-crate-type = ["lib"] # "staticlib"
+crate-type = ["lib", "staticlib"]
 
 [dependencies]
 rand = "0.8.3"
