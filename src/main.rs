@@ -294,10 +294,13 @@ fn main() {
 
 	let mut rng = thread_rng();
 	let mut result = Face::new();
+	let mut width = 0;
 	
 	while numBoost > 0 {
 		if let Some(face) = boostDie.choose(&mut rng) {
-			println!("{}", face.to_string());
+			let s = face.to_string();
+			width = std::cmp::max(width, s.len());
+			println!("{}", s);
 			result += *face;
 		};
 		numBoost -= 1;
@@ -305,7 +308,9 @@ fn main() {
 	
 	while numAbility > 0 {
 		if let Some(face) = abilityDie.choose(&mut rng) {
-			println!("{}", face.to_string());
+			let s = face.to_string();
+			width = std::cmp::max(width, s.len());
+			println!("{}", s);
 			result += *face;
 		};
 		numAbility -= 1;
@@ -313,7 +318,9 @@ fn main() {
 	
 	while numProficiency > 0 {
 		if let Some(face) = proficiencyDie.choose(&mut rng) {
-			println!("{}", face.to_string());
+			let s = face.to_string();
+			width = std::cmp::max(width, s.len());
+			println!("{}", s);
 			result += *face;
 		};
 		numProficiency -= 1;
@@ -321,7 +328,9 @@ fn main() {
 	
 	while numSetback > 0 {
 		if let Some(face) = setbackDie.choose(&mut rng) {
-			println!("{}", face.to_string());
+			let s = face.to_string();
+			width = std::cmp::max(width, s.len());
+			println!("{}", s);
 			result += *face;
 		};
 		numSetback -= 1;
@@ -329,7 +338,9 @@ fn main() {
 	
 	while numDifficulty > 0 {
 		if let Some(face) = difficultyDie.choose(&mut rng) {
-			println!("{}", face.to_string());
+			let s = face.to_string();
+			width = std::cmp::max(width, s.len());
+			println!("{}", s);
 			result += *face;
 		};
 		numDifficulty -= 1;
@@ -337,7 +348,9 @@ fn main() {
 	
 	while numChallenge > 0 {
 		if let Some(face) = challengeDie.choose(&mut rng) {
-			println!("{}", face.to_string());
+			let s = face.to_string();
+			width = std::cmp::max(width, s.len());
+			println!("{}", s);
 			result += *face;
 		};
 		numChallenge -= 1;
@@ -345,12 +358,19 @@ fn main() {
 	
 	while numForce > 0 {
 		if let Some(face) = forceDie.choose(&mut rng) {
-			println!("{}", face.to_string());
+			let s = face.to_string();
+			width = std::cmp::max(width, s.len());
+			println!("{}", s);
 			result += *face;
 		};
 		numForce -= 1;
 	}
 
 	result.balance();
-	println!("{}", result.to_string());
+
+	let result_str = result.to_string();
+	width = std::cmp::max(width, result_str.len());
+
+	println!("{}", "-".repeat(width));
+	println!("{}", result_str);
 }
