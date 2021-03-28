@@ -32,10 +32,7 @@ pub fn roll(args: &Vec<String>) -> Face {
 		force: 0
 	};
 
-	let mut i = 1;
-	while i < args.len() {
-		let arg = &args[i];
-
+	for arg in args {
 		for cap in re.captures_iter(&arg) {
 			let sign = &cap[1];
 			let num_str = &cap[2];
@@ -58,8 +55,6 @@ pub fn roll(args: &Vec<String>) -> Face {
 				_ => ()
 			}
 		}
-
-		i += 1;
 	}
 
 	let boostDie = vec![
@@ -129,7 +124,7 @@ pub fn roll(args: &Vec<String>) -> Face {
 		Face::negative(1, 1, 0),
 		Face::negative(0, 2, 0),
 		Face::negative(0, 2, 0),
-		Face::negative(0, 0, 1)
+		Face::negative(1, 0, 1)
 	];
 
 	let forceDie = vec![
@@ -238,6 +233,7 @@ mod capi {
 			}
 		}
 
+		ret.balance();
 		ret
 	}
 }

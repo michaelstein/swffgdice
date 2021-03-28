@@ -42,3 +42,8 @@ class SwFfgDiceConan(ConanFile):
 
 	def package_info(self):
 		self.cpp_info.libs = ["swffgdice"]
+		if self.settings.os == "Windows":
+			#self.cpp_info.libs.append("kernel32")
+			self.cpp_info.libs.append("bcrypt")
+			self.cpp_info.libs.append("advapi32")
+			self.cpp_info.libs.append("userenv")
